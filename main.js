@@ -1,11 +1,16 @@
 const navToggler = document.querySelector("#navToggler");
-const navLinks = document.querySelector(".nav-bar__links");
-const navLink = document.querySelectorAll(".nav-bar__link");
+const nav = document.querySelector(".nav-links");
+const navLinks = document.querySelectorAll(".nav-link");
 
 navToggler.addEventListener("click", () => {
-  navLinks.classList.toggle("nav-active");
-});
-
-navToggler.addEventListener("click", () => {
-  navLink.classList.toggle(".nav-bar__link--active");
+  //navToggler
+  nav.classList.toggle("nav-active");
+  //Links Animation
+  navLinks.forEach((link, i) => {
+    if (link.style.animation) {
+      link.style.animation = "";
+    } else {
+      link.style.animation = `navLinkFade 0.5s ease forwards ${i / 5 + 0.5}s`;
+    }
+  });
 });

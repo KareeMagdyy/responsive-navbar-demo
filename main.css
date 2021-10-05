@@ -1,3 +1,6 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@400;500;700;800;900&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -5,9 +8,14 @@
 }
 
 body {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  background-color: rgb(221, 193, 150);
+  font-family: "Alegreya SC", serif;
+  background-color: burlywood;
   overflow-x: hidden;
+}
+
+nav {
+  background-color: rgb(221, 193, 150);
+  height: 10vh;
 }
 
 .logo {
@@ -35,7 +43,7 @@ body {
   transition: all cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.nav-bar__links {
+.nav-links {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,26 +51,81 @@ body {
   background-color: rgb(201, 169, 122);
   height: 90vh;
   transform: translateX(100%);
-  transition: transform 600ms ease-in;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .nav-active {
   transform: translateX(0%);
 }
 
-.nav-bar__link {
+.nav-link {
   list-style: none;
   opacity: 0;
-  transition: opacity 1s ease-in;
 }
 
-.nav-bar__link a {
+.nav-link a {
+  position: relative;
   text-decoration: none;
   color: #000;
   font-size: 1.5rem;
   line-height: 4rem;
+  padding: 0 10px;
+  transition: all 0.2s ease-in-out;
 }
 
-.nav-bar__link--active {
-  opacity: 1;
+.nav-link a:after {
+  content: "";
+  position: absolute;
+  background-color: rgb(48, 42, 35);
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -10px;
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-link a:hover:after {
+  width: 100%;
+}
+
+.nav-link a:hover {
+  letter-spacing: 3px;
+}
+
+/*Animations*/
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@media (min-width: 961px) {
+  .main-nav {
+    display: flex;
+    justify-content: space-between;
+  }
+  .nav-links {
+    flex-direction: row;
+    transform: translateX(0%);
+    height: auto;
+    background-color: transparent;
+    margin-right: 1rem;
+  }
+  #navToggler {
+    display: none;
+  }
+
+  .nav-link {
+    opacity: 1;
+    margin: 0 1.2rem;
+  }
+
+  .nav-link a {
+    padding: 0 2px;
+  }
 }
