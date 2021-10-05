@@ -129,3 +129,13 @@ nav {
     padding: 0 2px;
   }
 }
+
+@media (max-width: 375px) {
+  .logo h1 {
+    font-size: 1.4rem;
+  }
+
+  #navToggler {
+    font-size: 1.4rem;
+  }
+}
