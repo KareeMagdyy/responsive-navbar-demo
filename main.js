@@ -13,4 +13,6 @@ navToggler.addEventListener("click", () => {
       link.style.animation = `navLinkFade 0.5s ease forwards ${i / 5 + 0.5}s`;
     }
   });
+  //Toggle Switch
+  navToggler.classList.toggle("fa-times");
 });
