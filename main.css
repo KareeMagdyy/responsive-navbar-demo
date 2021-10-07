@@ -1,21 +1,30 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@400;500;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
 
-* {
-  padding: 0;
+:root {
+  --typewriterSpeed: 5s;
+  --CharLength: 25;
+}
+
+*,
+*::after,
+*::before {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Alegreya SC", serif;
   background-color: burlywood;
   overflow-x: hidden;
+  font-family: "Alegreya SC", serif;
 }
 
 nav {
   background-color: rgb(221, 193, 150);
   height: 10vh;
+  position: relative;
 }
 
 .logo {
@@ -92,18 +101,74 @@ nav {
   letter-spacing: 3px;
 }
 
-/*Animations*/
-@keyframes navLinkFade {
-  from {
-    opacity: 0;
-    transform: translateX(70px);
+.main-header {
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.main-tittle {
+  position: relative;
+  font-family: "Source Code Pro", monospace;
+  font-size: 2rem;
+  /* width: max-content; */
+  z-index: -1;
+}
+
+.main-tittle::before,
+.main-tittle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.main-tittle::before {
+  background-color: burlywood;
+  animation: typewriter var(--typewriterSpeed) steps(var(--CharLength)) forwards;
+}
+
+.main-tittle::after {
+  content: "";
+  width: 2px;
+  height: 90%;
+  background-color: black;
+  animation: typewriter var(--typewriterSpeed) steps(var(--CharLength)) forwards,
+    blink 500ms steps(var(--CharLength)) infinite;
+}
+
+.h-disc {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 2rem;
+  transform: translateY(70px);
+  opacity: 0;
+  z-index: -1;
+  animation: fadeInUp 2s ease calc(var(--typewriterSpeed) + 300ms) forwards;
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+@media (min-width: 1281px) {
+  .main-tittle {
+    font-size: 3rem;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0px);
+  .h-disc {
+    font-size: 2rem;
+    margin-top: 3rem;
   }
 }
 
+/* 
+  ##Device = Laptops, Desktops, Tablets, Ipads (landscape)
+  ##Screen = B/w 1025px to 1280px
+*/
 @media (min-width: 961px) {
   .main-nav {
     display: flex;
@@ -119,23 +184,84 @@ nav {
   #navToggler {
     display: none;
   }
-
   .nav-link {
     opacity: 1;
     margin: 0 1.2rem;
   }
-
   .nav-link a {
     padding: 0 2px;
   }
+  .logo h1 {
+    font-size: 1.8rem;
+  }
+  .main-tittle {
+    font-size: 2.7rem;
+  }
+  .h-disc {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+  }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 500px) {
+  .logo h1 {
+    font-size: 1.6rem;
+  }
+  #navToggler {
+    font-size: 1.6rem;
+  }
+  .main-tittle {
+    font-size: 1.4rem;
+  }
+  .h-disc {
+    font-size: 1.1rem;
+    margin-top: 2.5rem;
+  }
+}
+
+@media (max-width: 360px) {
   .logo h1 {
     font-size: 1.4rem;
   }
-
   #navToggler {
     font-size: 1.4rem;
+  }
+  .main-tittle {
+    font-size: 1.05rem;
+  }
+  .h-disc {
+    font-size: 0.9rem;
+    margin-top: 2.05rem;
+  }
+}
+
+/*Animations*/
+@keyframes navLinkFade {
+  from {
+    opacity: 0;
+    transform: translateX(70px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes typewriter {
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  to {
+    background-color: transparent;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: rotateY(0);
   }
 }
